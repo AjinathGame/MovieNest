@@ -45,28 +45,4 @@ searchButton.addEventListener("click", async () => {
 
 
 
-document.getElementById('year').textContent = new Date().getFullYear();
 
-
-// Intersection Observer: reveal on scroll
-const items = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
-}, { threshold: 0.12 });
-items.forEach(el => io.observe(el));
-
-
-// Fake subscribe handler with simple validation feedback
-function subscribe() {
-    const email = document.getElementById('email');
-    const value = email.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        email.style.outline = '2px solid var(--bad)';
-        email.focus();
-        return;
-    }
-    email.style.outline = '2px solid var(--ok)';
-    alert('Thanks for subscribing to MovieNest!');
-    email.value = '';
-    setTimeout(() => email.style.outline = 'none', 600);
-}
